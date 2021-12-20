@@ -1,0 +1,14 @@
+go.property("color", hash("none"))
+
+function init(self)
+
+	if self.color ~= nil then
+		local c = self.color
+		msg.post("#sprite", "play_animation", { id = hash(c) })
+	end
+end
+
+
+function on_message(self, message_id, message, sender)
+
+end

@@ -1,0 +1,43 @@
+[project]
+title = WuZiMu
+version = 1.0
+
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[input]
+game_binding = /input/game.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 800
+height = 800
+high_dpi = 0
+fullscreen = 0
+
+[physics]
+scale = 0.02
+
+[script]
+shared_state = 1
+
+[particle_fx]
+max_count = 256
+max_particle_count = 4096
+
+[sprite]
+max_count = 512
+
+[library]
+include_dirs = 
+
+[engine]
+run_while_iconified = 0
+
+[html5]
+scale_mode = downscale_fit
+show_fullscreen_button = 0
+
+[native_extension]
+app_manifest = /generated.appmanifest
+
