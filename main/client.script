@@ -1,0 +1,40 @@
+local ColyseusClient = require "colyseus.client"
+
+local client
+local room
+local gameState = "MENU";
+
+function init(self)
+
+	client = ColyseusClient.new("ws://localhost:2567")
+	client:join_or_create("wuzimu", {}, function(err, _room)
+		if err then
+			print("JOIN ERROR: " .. err)
+			return
+		end
+		room = _room
+		local numPlayers = 0;
+		room:on("statechange", function(state)
+			numPlayers = numPlayers+1
+			if numPlayers == 2 then
+				onJoin();
+			end
+		end)
+		room:on_message("powerup", function(message)
+			print("message received from server")
+			print(message)
+		end)
+	end)
+
+end
+
+function onJoin()
+	print("Joined game!");
+	gameState = "GAME";
+	handleGameState();
+end
+
+function handleGameState()
+
+end
+

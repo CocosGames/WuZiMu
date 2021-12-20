@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/main/fish.script"
+  component: "/main/piece.script"
   position {
     x: 0.0
     y: 0.0
