@@ -2,7 +2,7 @@ local ColyseusClient = require "colyseus.client"
 
 local client
 local room
-local gameState = "MENU";
+local roomState = "waiting";
 
 function init(self)
 
@@ -17,24 +17,31 @@ function init(self)
 		room:on("statechange", function(state)
 			numPlayers = numPlayers+1
 			if numPlayers == 2 then
-				onJoin();
+				print("Gaming!")
+				roomState = "gaming"
+				room:off("statechange")
+				msg.post("#board", "build")
 			end
 		end)
-		room:on_message("powerup", function(message)
-			print("message received from server")
-			print(message)
-		end)
+		room.state.players['currentTurn'] = function (sessionId)
+			print(sessionId.."'s turn!")
+		end
+		room.state.board['onChange'] = function (value, index)
+			msg.post("#board", "set", {value=value, index=index})
+		end
+		room.state["draw"] = function()
+			msg.post("#board", "draw")
+		end
+		room.state["winner"] = function (sessionId)
+			msg.post("#board", "winner", {win=room.sessionId == sessionId})
+		end
 	end)
 
 end
 
-function onJoin()
-	print("Joined game!");
-	gameState = "GAME";
-	handleGameState();
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("action") then
+		room:send("action", {index=message.index})
+	end
 end
-
-function handleGameState()
-
-end
-

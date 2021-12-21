@@ -7,8 +7,3 @@ function init(self)
 		msg.post("#sprite", "play_animation", { id = hash(c) })
 	end
 end
-
-
-function on_message(self, message_id, message, sender)
-
-end

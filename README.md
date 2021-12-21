@@ -1,6 +1,6 @@
 # Wu Zi Mu
 
-![](C:\Users\suppo\Project\defold\WuZiMu\raw\wuzimu.png)
+![](raw/wuzimu.png)
 
 This project is released under the Creative Commons CC0 1.0 Universal license.
 
