@@ -14,20 +14,21 @@ function init(self)
 		end
 		room = _room
 		local numPlayers = 0;
-		room:on("statechange", function(state)
+		room.state.players['on_add'] = function()
+			print("Player Joined!")
 			numPlayers = numPlayers+1
 			if numPlayers == 2 then
 				print("Gaming!")
 				roomState = "gaming"
-				room:off("statechange")
 				msg.post("#board", "build")
 			end
-		end)
+		end
 		room.state.players['currentTurn'] = function (sessionId)
 			print(sessionId.."'s turn!")
 		end
-		room.state.board['onChange'] = function (value, index)
-			msg.post("#board", "set", {value=value, index=index})
+		room.state.board['on_change'] = function (value, index)
+			print(value,index)
+			msg.post("#board", "set", {value=value, index=index-1})
 		end
 		room.state["draw"] = function()
 			msg.post("#board", "draw")
