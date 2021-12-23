@@ -40,9 +40,12 @@ function init(self)
 
 end
 
-
 function on_message(self, message_id, message, sender)
-	if message_id == hash("action") then
+	if message_id == hash("action") and room.state.currentTurn == room.sessionId then
 		room:send("action", {index=message.index})
 	end
+end
+
+function gameOver()
+	room.leave()
 end

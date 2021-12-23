@@ -13,6 +13,14 @@ function on_message(self, message_id, message, sender)
 		self.board = {}
 	elseif message_id == hash("set") then
 		set_board(self, message.value, message.index)
+	elseif message_id == hash("draw") then
+		print("DRAW!")
+	elseif message_id == hash("winner") then
+		if message.win then
+			print("WIN!")
+		else
+			print("LOSE!")
+		end
 	end
 end
 
