@@ -71,7 +71,7 @@ export class WuZiMuRoom extends Room<State> {
 
         if (this.checkWin(x, y, move)) {
           this.state.winner = client.sessionId;
-
+          console.log("winner: " + client.sessionId);
         } else if (this.checkBoardComplete()) {
           this.state.draw = true;
 

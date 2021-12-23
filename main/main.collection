@@ -70,27 +70,7 @@ embedded_instances {
   "    w: 1.0\n"
   "  }\n"
   "}\n"
-  ""
-  position {
-    x: 400.0
-    y: 400.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-embedded_instances {
-  id: "go"
-  data: "embedded_components {\n"
+  "embedded_components {\n"
   "  id: \"label\"\n"
   "  type: \"label\"\n"
   "  data: \"size {\\n"
@@ -100,8 +80,8 @@ embedded_instances {
   "  w: 0.0\\n"
   "}\\n"
   "scale {\\n"
-  "  x: 5.0\\n"
-  "  y: 5.0\\n"
+  "  x: 1.0\\n"
+  "  y: 1.0\\n"
   "  z: 1.0\\n"
   "  w: 0.0\\n"
   "}\\n"
@@ -134,8 +114,8 @@ embedded_instances {
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"
-  "    y: 79.0\n"
-  "    z: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 1.0\n"
   "  }\n"
   "  rotation {\n"
   "    x: 0.0\n"
@@ -147,8 +127,8 @@ embedded_instances {
   ""
   position {
     x: 400.0
-    y: 0.0
-    z: 1.0
+    y: 400.0
+    z: 0.0
   }
   rotation {
     x: 0.0
