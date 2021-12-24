@@ -5,7 +5,8 @@ local room
 
 function init(self)
 
-	client = ColyseusClient.new("ws://localhost:2567")
+	--client = ColyseusClient.new("ws://localhost:2567")
+	client = ColyseusClient.new("ws://u7gk7r.us-east-vin.colyseus.net:2567")
 	client:join_or_create("wuzimu", {}, function(err, _room)
 		if err then
 			print("JOIN ERROR: " .. err)
@@ -13,6 +14,10 @@ function init(self)
 		end
 		room = _room
 		local numPlayers = 0;
+		while room == nil do
+			print("wait")
+		end
+			
 		room.state.players['on_add'] = function(value, key)
 			print("Player Joined: "..key)
 			numPlayers = numPlayers+1
