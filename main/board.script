@@ -7,11 +7,16 @@ local boardheight = 19		-- Number of rows
 function init(self)
 	msg.post("#label", "disable")
 	msg.post(".", "acquire_input_focus")
+	setup_board(self);
+end
+
+function setup_board(self)
+	self.board = {}
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("build") then
-		self.board = {}
+		setup_board(self)
 	elseif message_id == hash("set") then
 		set_board(self, message.value, message.index)
 	elseif message_id == hash("tip") then
@@ -60,8 +65,10 @@ function set_board(self, value, index)
 	local c;
 	if value==1 then
 		c = "white"
-	else
+	elseif value==2 then
 		c = "black"
+	else
+		return
 	end
 	local pos = vmath.vector3();
 	local x = index % boardwidth

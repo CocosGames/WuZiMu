@@ -34,15 +34,17 @@ class State extends Schema {
 
 export class WuZiMuRoom extends Room<State> {
   maxClients = 2;
-  randomMoveTimeout: Delayed;
 
   onCreate () {
     this.setState(new State());
+    this.setSeatReservationTime(100000);
     this.onMessage("action", (client, message) => this.playerAction(client, message));
     console.log("Room Created!");
+    this.resetAutoDisposeTimeout(100000);
   }
 
   onJoin (client: Client) {
+    this.setSeatReservationTime(100000);
     this.state.players.set(client.sessionId, true);
     console.log(this.state.players.size + " players joined!");
     if (this.state.players.size === 2) {

@@ -1,0 +1,13 @@
+[2021/12/23 下午5:24:19] @colyseus/loadtest
+endpoint: ws://localhost:2567
+roomName: my_room
+numClients: 2
+scriptFile: C:\Users\suppo\Project\colyseus\WuZiMuServer\loadtest\example.ts
+logLevel: all
+output: C:\Users\suppo\Project\colyseus\WuZiMuServer\loadtest.log
+[2021/12/23 下午5:24:21] Error: connect ECONNREFUSED 127.0.0.1:2567
+[2021/12/23 下午5:24:21] Error: connect ECONNREFUSED 127.0.0.1:2567
+[2021/12/23 下午5:24:36] Finished. Summary:
+Successful connections: 0
+Failed connections: 2
+Total errors: 2

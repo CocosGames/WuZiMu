@@ -33,8 +33,10 @@
   "dependencies": {
     "@colyseus/arena": "^0.14.22",
     "@colyseus/monitor": "^0.14.20",
-    "colyseus": "^0.14.20",
+    "@colyseus/uwebsockets-transport": "^0.14.26",
+    "colyseus": "^0.15.0-preview.4",
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "uwebsockets-express": "^1.2.1"
   }
 }

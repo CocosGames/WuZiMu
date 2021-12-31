@@ -1,20 +1,27 @@
 import Arena from "@colyseus/arena";
 import { monitor } from "@colyseus/monitor";
+import { WebSocketTransport } from "@colyseus/ws-transport";
+import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport";
 
 /**
  * Import your Room files
  */
 import { WuZiMuRoom } from "./rooms/WuZiMuRoom";
+import {Transport} from "colyseus";
 
 export default Arena({
-    getId: () => "Your Colyseus App",
+    getId: () => "WuZiMu Server",
+
+    initializeTransport: function() {
+        return new uWebSocketsTransport({
+        });
+    },
 
     initializeGameServer: (gameServer) => {
         /**
          * Define your room handlers:
          */
         gameServer.define('wuzimu', WuZiMuRoom);
-
     },
 
     initializeExpress: (app) => {

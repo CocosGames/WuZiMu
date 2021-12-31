@@ -5,8 +5,8 @@ local room
 
 function init(self)
 
-	--client = ColyseusClient.new("ws://localhost:2567")
-	client = ColyseusClient.new("ws://u7gk7r.us-east-vin.colyseus.net:2567")
+	client = ColyseusClient.new("ws://localhost:2567")
+	--client = ColyseusClient.new("wss://u7gk7r.us-east-vin.colyseus.net:443")
 	client:join_or_create("wuzimu", {}, function(err, _room)
 		if err then
 			print("JOIN ERROR: " .. err)
@@ -14,18 +14,18 @@ function init(self)
 		end
 		room = _room
 		local numPlayers = 0;
-		while room == nil do
-			print("wait")
-		end
+		--while room == nil do
+		--	print("wait")
+		--end
 			
-		room.state.players['on_add'] = function(value, key)
+		room.state.players:on_add(function(value, key)
 			print("Player Joined: "..key)
 			numPlayers = numPlayers+1
 			if numPlayers == 2 then
 				msg.post("#board", "build")
 			end
-		end
-		room.state['on_change'] = function (changes)
+		end)
+		room.state:on_change(function (changes)
 			if changes==nil or #changes == 0 then
 				return
 			end
@@ -37,12 +37,12 @@ function init(self)
 			elseif changes[1].field =="winner"  then
 				msg.post("#board", "winner", {win=room.sessionId == changes[1].value})
 			end
-		end
-		room.state.board['on_change'] = function (value, index)
-			msg.post("#board", "set", {value=value, index=index-1})
-		end
-	end)
+		end)
 
+		room.state.board:on_change(function (value, index)
+			msg.post("#board", "set", {value=value, index=index-1})
+		end)
+	end)
 end
 
 function on_message(self, message_id, message, sender)
